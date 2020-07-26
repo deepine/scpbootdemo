@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+
+    <style>
+
+.p {
+padding-top:10px;
+padding-right:50px;
+padding-bottom:0px;
+padding-left:50px;
+}
+
+  /* 사이드바 래퍼 스타일 */
+
+  #page-wrapper {
+
+    padding-left: 250px;
+  }
+
+  #sidebar-wrapper {
+
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    background: #33445A;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #page-content-wrapper {
+
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* 사이드바 스타일 */
+
+  .sidebar-nav {
+  background-color: #33445A;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+  }
+
+
+  .sidebar-nav li {
+    text-indent: 1.5em;
+    line-height: 2.8em;
+  }
+
+  .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+  }
+
+  .sidebar-nav li a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .sidebar-nav > .sidebar-brand {
+
+    font-size: 1.3em;
+    line-height: 3em;
+  }
+
+</style>
+</head>
+
+<!--------------------------- Body 시작 ---------------------------------->
+<body>
+
+<div id="page-wrapper">
+
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="index">SCP Demo</a>
+            </li>
+            <li>
+                <a href="viewData">데이터 CRUD 데모</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /사이드바 -->
+
+    <!-- 본문 1단 -->
+    <div id="page-content-wrapper"
+         style="background-color: #F7F7F7">
+        <div class="container-fluid">
+            <h1>SAP Cloud Platform 데이터 입력 예제</h1>
+            <p>Cloud Foundry + HANA Cloud Service</p>
+        </div>
+    </div>
+
+    <!-- 데이터 입력 -->
+    <br>
+    <div class="p">
+        <form action="inputDataExe" method="post">
+            <div class="form-group">
+                <label>자재명 입력</label>
+                <input class="form-control form-control-lg" type="text" name="data1" placeholder="자재명을 입력해 주세요">
+            </div>
+            <div class="form-group">
+                <label>수량 입력</label>
+                <input class="form-control form-control-lg" type="text" name="data2" placeholder="수량을 입력해 주세요">
+            </div>
+            <div class="form-group">
+                <label>단위 입력</label>
+                <select name="data3" id="data3" class="form-control form-control-lg">
+                    <option value="EA" selected>EA</option>
+                    <option value="BOX">BOX</option>
+                    <option value="Container">Container</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">입력</button>
+        </form>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+
+    <style>
+
+.p {
+padding-top:10px;
+padding-right:50px;
+padding-bottom:0px;
+padding-left:50px;
+}
+
+  /* 사이드바 래퍼 스타일 */
+
+  #page-wrapper {
+
+    padding-left: 250px;
+  }
+
+  #sidebar-wrapper {
+
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    background: #33445A;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #page-content-wrapper {
+
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* 사이드바 스타일 */
+
+  .sidebar-nav {
+  background-color: #33445A;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+  }
+
+
+  .sidebar-nav li {
+    text-indent: 1.5em;
+    line-height: 2.8em;
+  }
+
+  .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+  }
+
+  .sidebar-nav li a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .sidebar-nav > .sidebar-brand {
+
+    font-size: 1.3em;
+    line-height: 3em;
+  }
+
+</style>
+</head>
+
+<!--------------------------- Body 시작 ---------------------------------->
+<body>
+<div id="page-wrapper">
+
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="index">SCP Demo</a>
+            </li>
+            <li>
+                <a href="viewData">데이터 CRUD 데모</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /사이드바 -->
+
+    <!-- 본문 1단 -->
+    <div id="page-content-wrapper"
+         style="background-color: #F7F7F7">
+        <div class="container-fluid">
+            <h1>SAP Cloud Platform 데이터 조회 예제</h1>
+            <p>Cloud Foundry + HANA Cloud Service</p>
+        </div>
+    </div>
+
+    <!-- 데이터 테이블 -->
+    <br>
+    <div class="row p">
+        <table id="list_table_1" width="100%" class="table table-bordered table-hover text-center">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>자재명</th>
+                <th>수량</th>
+                <th>단위</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- thymeleaf start -->
+            <tr th:each="obj : ${list}">
+                <td><span th:text="${obj.id}"></span></td>
+                <td><span th:text="${obj.data1}"></span></td>
+                <td><span th:text="${obj.data2}"></span></td>
+                <td><span th:text="${obj.data3}"></span></td>
+            </tr>
+            <!-- thymeleaf end -->
+            </tbody>
+        </table>
+        <div class="col-lg-12" id="ex1_Result1"></div>
+        <div class="col-lg-12" id="ex1_Result2"></div>
+    </div>
+    <div class="p">
+        <button class="btn btn-primary float-right" onclick="window.location='inputData'">새 아이템 입력</button>
+    </div>
+
+    <script>
+	// 테이블의 Row 클릭시 값 가져오기
+	$("#list_table_1 tr").click(function(){
+
+		var str = ""
+		var str2 = ""
+		var tdArr = new Array();    // 배열 선언
+
+		// 현재 클릭된 Row(<tr>)
+		var tr = $(this);
+		var td = tr.children();
+
+		// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+
+		// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+		td.each(function(i){
+			tdArr.push(td.eq(i).text());
+		});
+
+		console.log("배열에 담긴 값 : "+tdArr);
+
+		// td.eq(index)를 통해 값을 가져올 수도 있다.
+		var no = td.eq(0).text();
+		var userid = td.eq(1).text();
+		var name = td.eq(2).text();
+		var email = td.eq(3).text();
+
+
+		str +=    " * 클릭된 Row의 td값 = No. : <font color='red'>" + no + "</font>" +
+				", 아이디 : <font color='red'>" + userid + "</font>" +
+				", 이름 : <font color='red'>" + name + "</font>" +
+				", 이메일 : <font color='red'>" + email + "</font>";
+
+		str2 += "correctData?no=" + no;
+
+		//$("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());
+		//$("#ex1_Result2").html(str);
+
+		window.location.href=str2;
+	});
+</script>
+
+</div>
+
+
+
+</body>
+</html>
